@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :name, presence: true
+  validates :email, uniqueness: true
+  validates :admin, inclusion { in: [ true, false ]}
 
   def self.create_with_omniauth(auth)
     create! do |user|
