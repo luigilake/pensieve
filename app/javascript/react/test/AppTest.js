@@ -11,6 +11,6 @@ describe('A test for App', () => {
   })
 
   it('should pass', () => {
-    expect(wrapper.find('h1').text()).toEqual("Hello World")
+    expect(wrapper.find('h1').text()).toEqual("* The Pensieve Project *")
   })
 })
