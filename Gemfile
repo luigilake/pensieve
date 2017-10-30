@@ -12,6 +12,7 @@ gem 'dotenv-rails'
 group :test do
   gem 'coveralls', require: false
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 group :development do
