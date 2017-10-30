@@ -1,0 +1,11 @@
+.navbar button {
+  background: none;
+  transition: 0.3s ease-in-out;
+  margin: 0%;
+  font-family: futura;
+}
+
+.navbar button:hover {
+  background: none;
+  border-bottom: 3px solid white;
+}

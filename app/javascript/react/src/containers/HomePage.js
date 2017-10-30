@@ -39,7 +39,8 @@ class HomePage extends Component {
     }
     return(
       <div>
-        <h1>* The Pensieve Project *</h1>
+        <img id='main-logo' src='https://image.ibb.co/imeFqm/Pensive_project_logo_V4.png' alt='logo'/>
+        <hr id='home-divider'/>
         {homeStatus}
       </div>
     )

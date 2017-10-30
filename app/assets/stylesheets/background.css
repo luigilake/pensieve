@@ -1,0 +1,25 @@
+#body {
+  background: url('jason-wong-3499301-image.jpg') no-repeat top;
+  background-size: cover;
+}
+
+#app h1, #app h2, #app h3, #app h4, #app h5, #app p, #app span{
+  color: white;
+}
+
+#main-logo{
+  height: 25em;
+  min-height: 10em;
+  display: block;
+  margin: 15% auto 17% auto;
+}
+
+@media only screen and (max-width: 790px) {
+  #main-logo{
+    height: 15em;
+  }
+}
+
+#home-divider {
+  border: 2px solid white;
+}
