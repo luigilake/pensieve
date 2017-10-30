@@ -11,7 +11,7 @@ gem 'dotenv-rails'
 
 group :test do
   gem 'coveralls', require: false
-  gem 'simple_cov'
+  gem 'simplecov'
 end
 
 group :development do
