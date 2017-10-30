@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :edits
   has_many :memories
-  has_many :events, through :memories
+  has_many :events, through: :memories
 
   validates :name, presence: true
   validates :email, uniqueness: true
