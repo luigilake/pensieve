@@ -9,6 +9,11 @@ gem 'webpacker'
 gem 'omniauth-github', '1.1.1'
 gem 'dotenv-rails'
 
+group :test do
+  gem 'coveralls', require: false
+  gem 'simplecov'
+end
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'

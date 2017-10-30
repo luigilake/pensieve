@@ -5,6 +5,8 @@
 
 Based on the 'Pensive' from the Harry Potter Series, this is a collection and collector of memories tied to historical events and timelines. This website aims to combat historical revisionism, not by displaying 'facts' about certain events, but rather by providing visitors with a tapestry of rich and intimate first-person moments. Users can submit their memories, describing how they or their loved ones experienced certain events, from 9/11 to WW2, and build a sense of community with others who experienced the same events.
 
+[ ![Codeship](https://app.codeship.com/projects/b400a6c0-9f33-0135-4931-46fd1a276e75/status?branch=master)](https://app.codeship.com/projects/253582)
+[![Coveralls](https://coveralls.io/repos/github/luigilake/pensieve/badge.svg?branch=master)](https://coveralls.io/github/luigilake/pensieve?branch=master)
 ---
 
 ## Features
