@@ -2,5 +2,5 @@ class Memory < ApplicationRecord
   belongs_to :user
   belongs_to :event
 
-  validates :body, uniqueness: true
+  validates :body, presence: true, uniqueness: true
 end
