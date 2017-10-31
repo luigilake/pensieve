@@ -133,3 +133,11 @@
 div.personal-timeline-div {
   font-family: futura;
 }
+
+div.timeline-content h3 {
+  font-family: futura;
+}
+
+div.timeline-content p {
+  font-family: verdana;
+}

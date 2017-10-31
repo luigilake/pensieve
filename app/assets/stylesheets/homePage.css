@@ -25,6 +25,11 @@ button.selected-homepage-button:focus {
   border-bottom: 3px solid white;
 }
 
+button.new-timeline-button:focus {
+  background: none;
+  border-bottom: 3px solid white;
+}
+
 div.timeline-tile {
   margin: 2%;
   width: 20rem;

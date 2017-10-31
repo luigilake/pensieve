@@ -2,16 +2,18 @@ import React, {Component} from 'react';
 import { Link } from 'react-router';
 import TimelinesIndex from '../components/TimelinesIndex'
 import PersonalTimeline from '../components/PersonalTimeline'
+import TimelineForm from './TimelineForm'
 
 class HomeSignedIn extends Component {
   constructor(props){
     super(props);
     this.state = {
-      timelinesFilter: true,
+      timelinesFilter: 'timelines',
       userMemories: []
     }
     this.changeFilterTimelines = this.changeFilterTimelines.bind(this)
     this.changeFilterPersonals = this.changeFilterPersonals.bind(this)
+    this.changeFilterNew = this.changeFilterNew.bind(this)
   }
 
   componentDidMount(){
@@ -27,14 +29,20 @@ class HomeSignedIn extends Component {
   }
 
   changeFilterTimelines(){
-    if(this.state.timelinesFilter == false){
-      this.setState({ timelinesFilter: true })
+    if(this.state.timelinesFilter != 'timelines'){
+      this.setState({ timelinesFilter: 'timelines' })
     }
   }
 
   changeFilterPersonals(){
-    if(this.state.timelinesFilter == true){
-      this.setState({ timelinesFilter: false })
+    if(this.state.timelinesFilter != 'personals'){
+      this.setState({ timelinesFilter: 'personals' })
+    }
+  }
+
+  changeFilterNew(){
+    if(this.state.timelinesFilter != 'new'){
+      this.setState({ timelinesFilter: 'new' })
     }
   }
 
@@ -42,20 +50,25 @@ class HomeSignedIn extends Component {
     let rendered;
     let timelineClass;
     let personalClass;
-    if(this.state.timelinesFilter){
+    let newClass;
+    if(this.state.timelinesFilter == 'timelines'){
       timelineClass = 'selected-homepage-button'
       rendered = <TimelinesIndex timelines={this.props.timelines} />
-    } else {
+    } else if (this.state.timelinesFilter == 'personals') {
       personalClass = 'selected-homepage-button'
       rendered = <PersonalTimeline personals={this.state.userMemories} />
+    } else if (this.state.timelinesFilter == 'new') {
+      newClass = 'selected-homepage-button'
+      rendered = <TimelineForm />
     }
 
     return(
       <div>
         <div className='grid-container'>
           <div className='grid-x home-page-signed-buttons'>
-            <button className={`home-page-signed-buttons small-12 medium-4 large-2 large-offset-4 cell ${timelineClass}`} onClick={this.changeFilterTimelines}>TIMELINES</button>
+            <button className={`home-page-signed-buttons small-12 medium-4 large-2 large-offset-3 cell ${timelineClass}`} onClick={this.changeFilterTimelines}>TIMELINES</button>
             <button className={`home-page-signed-buttons small-12 medium-4 large-2 cell ${personalClass}`} onClick={this.changeFilterPersonals}>PERSONAL TIMELINE</button>
+            <button className={`home-page-signed-buttons small-12 medium-4 large-2 cell new-timeline-button ${newClass}`} onClick={this.changeFilterNew} >ADD NEW TIMELINE</button>
           </div>
         </div>
         {rendered}
