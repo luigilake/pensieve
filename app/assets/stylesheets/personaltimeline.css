@@ -1,0 +1,135 @@
+
+.timeline .timeline-item::after, .timeline .timeline-item::before {
+  clear: both;
+  content: '';
+  display: block;
+  width: 100%;
+}
+
+.timeline {
+  margin: 30px auto;
+  padding: 0 10px;
+  position: relative;
+  transition: all 0.25s ease-in;
+  width: 100%;
+}
+
+.timeline::before {
+  background: #fefefe;
+  content: '';
+  height: 100%;
+  left: 50%;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.timeline::after {
+  clear: both;
+  content: '';
+  display: table;
+  width: 100%;
+}
+
+.timeline a {
+  color: #fefefe;
+  font-weight: bold;
+  transition: all 0.25s ease-in;
+}
+
+.timeline a:hover {
+  box-shadow: 0 1px 0px 0px #fefefe;
+  transition: all 0.25s ease-in;
+}
+
+.timeline .timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.timeline .timeline-item .timeline-icon {
+  background: #fefefe;
+  border-radius: 50%;
+  height: 50px;
+  left: 50%;
+  margin-left: -23px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 50px;
+}
+
+.timeline .timeline-item .timeline-icon img,
+.timeline .timeline-item .timeline-icon svg {
+  left: 14px;
+  position: relative;
+  top: 11px;
+}
+
+.timeline .timeline-item .timeline-icon svg {
+  top: 14px;
+}
+
+.timeline .timeline-item .timeline-content {
+  padding: 20px;
+  text-align: right;
+  transition: all 0.25s ease-in;
+  width: 45%;
+  background: transparent;
+}
+
+.timeline .timeline-item .timeline-content p {
+  color: #fefefe;
+}
+
+.timeline .timeline-item .timeline-content p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+.timeline .timeline-item .timeline-content .timeline-content-date {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.timeline .timeline-item .timeline-content .timeline-content-month {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.timeline .timeline-item .timeline-content.right {
+  float: right;
+  text-align: left;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .timeline {
+    margin: 30px;
+    padding: 0;
+    width: 90%;
+  }
+  .timeline::before {
+    left: 0;
+  }
+  .timeline .timeline-item .timeline-content {
+    float: right;
+    text-align: left;
+    width: 90%;
+  }
+  .timeline .timeline-item .timeline-content::before, .timeline .timeline-item .timeline-content.right::before {
+    border-left: 0;
+    border-right: 7px solid #fefefe;
+    left: 10%;
+    margin-left: -6px;
+  }
+  .timeline .timeline-item .timeline-icon {
+    left: 0;
+  }
+}
+
+div.personal-timeline-div {
+  font-family: futura;
+}

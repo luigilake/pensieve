@@ -7,10 +7,12 @@ const UserSignedIn = props => {
   }
 
   return(
-    <div>
-      <Link to='/'><button>Home</button></Link>
-      <Link><button>Hi, {props.firstname}</button></Link>
-      <button onClick={signOut}>Sign Out</button>
+    <div className='grid-container'>
+      <div className='grid-x navbar'>
+        <Link to='/'><button className='small-12 medium-2 large-2 cell'>HOME</button></Link>
+        <Link><button className='small-12 medium-2 large-2 large-offset-6 cell'>HI, {props.firstname.toUpperCase()}</button></Link>
+        <button onClick={signOut} className='small-12 medium-2 large-2 cell'>SIGN OUT</button>
+      </div>
     </div>
   )
 }

@@ -15,9 +15,8 @@ const TimelinesIndex = props => {
   })
 
   return(
-    <div>
-      <h2>Timelines</h2>
-      <div>
+    <div className='grid-container'>
+      <div className='grid-x timeline-index'>
         {timelines}
       </div>
     </div>
