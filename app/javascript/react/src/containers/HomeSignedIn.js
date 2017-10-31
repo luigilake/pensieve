@@ -40,16 +40,23 @@ class HomeSignedIn extends Component {
 
   render(){
     let rendered;
+    let timelineClass;
+    let personalClass;
     if(this.state.timelinesFilter){
+      timelineClass = 'selected-homepage-button'
       rendered = <TimelinesIndex timelines={this.props.timelines} />
     } else {
+      personalClass = 'selected-homepage-button'
       rendered = <PersonalTimeline personals={this.state.userMemories} />
     }
+
     return(
       <div>
-        <div>
-          <button onClick={this.changeFilterTimelines}>Timelines</button>
-          <button onClick={this.changeFilterPersonals}>Personal Timeline</button>
+        <div className='grid-container'>
+          <div className='grid-x home-page-signed-buttons'>
+            <button className={`home-page-signed-buttons small-12 medium-4 large-2 large-offset-4 cell ${timelineClass}`} onClick={this.changeFilterTimelines}>TIMELINES</button>
+            <button className={`home-page-signed-buttons small-12 medium-4 large-2 cell ${personalClass}`} onClick={this.changeFilterPersonals}>PERSONAL TIMELINE</button>
+          </div>
         </div>
         {rendered}
       </div>

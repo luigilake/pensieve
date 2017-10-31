@@ -1,5 +1,5 @@
 #body {
-  background: url('jason-wong-3499301-image.jpg') no-repeat top;
+  background: url('jason-wong-3499301-image.jpg') top;
   background-size: cover;
 }
 
@@ -8,18 +8,28 @@
 }
 
 #main-logo{
-  height: 25em;
+  height: 15em;
+  margin: 10% auto 12% auto;
   min-height: 10em;
   display: block;
-  margin: 15% auto 17% auto;
 }
 
 @media only screen and (max-width: 790px) {
   #main-logo{
-    height: 15em;
+    height: 10em;
+    margin: 10% auto 12% auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #main-logo{
+    height: 25em;
+    margin: 15% auto 17% auto;
   }
 }
 
 #home-divider {
   border: 2px solid white;
+  opacity: 0.5;
+  margin: 0%;
 }

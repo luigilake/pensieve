@@ -1,0 +1,56 @@
+.home-page-signed-buttons button {
+  background: none;
+  transition: 0.3s ease-in-out;
+  margin: 0%;
+  font-family: futura;
+  border: 3px solid rgba(0,0,0,0);
+}
+
+div.timeline-index {
+  text-align: center;
+}
+
+.home-page-signed-buttons button:hover {
+  background: none;
+  border-bottom: 3px solid white;
+}
+
+button.selected-homepage-button {
+  background: none;
+  border-bottom: 3px solid white;
+}
+
+button.selected-homepage-button:focus {
+  background: none;
+  border-bottom: 3px solid white;
+}
+
+div.timeline-tile {
+  margin: 2%;
+  width: 20rem;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 10rem;
+}
+
+img.timeline-tile-image {
+  width: 100%;
+  height: 100%;
+  transition: 0.3s ease-in-out;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+img.timeline-tile-image:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+}
+
+h3.timeline-tile-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: futura;
+}
