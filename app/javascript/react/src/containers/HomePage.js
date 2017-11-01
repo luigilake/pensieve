@@ -33,7 +33,7 @@ class HomePage extends Component {
   render(){
     let homeStatus;
     if(this.state.current_user){
-      homeStatus = <HomeSignedIn timelines={this.state.timelines} userId={this.state.current_user.id}/>
+      homeStatus = <HomeSignedIn timelines={this.state.timelines} user={this.state.current_user}/>
     } else {
       homeStatus = <TimelinesIndex timelines={this.state.timelines}/>
     }

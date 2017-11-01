@@ -6,8 +6,8 @@ const EventInfo = props => {
     <div className='small-12 large-6 cell eventshow-info'>
       <h1>{props.title}</h1>
       <ul>
-        <li>Date: {props.date}</li>
-        <li>Location: {props.location}</li>
+        <p>DATE: {props.date}</p>
+        <p>LOCATION: {props.location}</p>
       </ul>
       <p>{props.body}</p>
     </div>

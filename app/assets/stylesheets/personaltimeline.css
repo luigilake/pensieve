@@ -141,3 +141,22 @@ div.timeline-content h3 {
 div.timeline-content p {
   font-family: verdana;
 }
+
+.all-personal-timeline{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+@media only screen and (max-width: 639px) {
+  .all-personal-timeline{
+    padding-left: 0%;
+    padding-right: 5%;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .all-personal-timeline{
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+}

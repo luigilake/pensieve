@@ -17,7 +17,7 @@ class HomeSignedIn extends Component {
   }
 
   componentDidMount(){
-    fetch(`/api/v1/users/${this.props.userId}.json`, {
+    fetch(`/api/v1/users/${this.props.user.id}.json`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Content-Type':'application/json'}
@@ -51,12 +51,18 @@ class HomeSignedIn extends Component {
     let timelineClass;
     let personalClass;
     let newClass;
+    let name;
+
+    if(this.props.user.name){
+      name = this.props.user.name.split(' ')[0]
+    }
+
     if(this.state.timelinesFilter == 'timelines'){
       timelineClass = 'selected-homepage-button'
       rendered = <TimelinesIndex timelines={this.props.timelines} />
     } else if (this.state.timelinesFilter == 'personals') {
       personalClass = 'selected-homepage-button'
-      rendered = <PersonalTimeline personals={this.state.userMemories} />
+      rendered = <PersonalTimeline personals={this.state.userMemories} userName={name}/>
     } else if (this.state.timelinesFilter == 'new') {
       newClass = 'selected-homepage-button'
       rendered = <TimelineForm />

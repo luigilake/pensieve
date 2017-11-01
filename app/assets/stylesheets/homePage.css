@@ -4,6 +4,7 @@
   margin: 0%;
   font-family: futura;
   border: 3px solid rgba(0,0,0,0);
+  outline: none;
 }
 
 div.timeline-index {
@@ -58,4 +59,16 @@ h3.timeline-tile-title {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: futura;
+}
+
+#personal-timeline-intro {
+  font-family: futura;
+  margin: 3% 15%;
+  text-align: center;
+}
+
+@media only screen and (max-width: 790px) {
+  #personal-timeline-intro {
+    font-size: 1rem;
+  }
 }

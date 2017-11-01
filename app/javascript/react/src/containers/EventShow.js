@@ -23,14 +23,16 @@ class EventShow extends Component {
   render(){
     let event = this.state.eventDetails
     let memoryIndex;
+    let title;
     if(this.state.eventDetails.title){
       memoryIndex = <MemoryIndex id={event.id} />
+      title = event.title.toUpperCase()
     }
     return(
       <div className='grid-container'>
-        <div className='grid-x'>
+        <div className='grid-x entire-show-page'>
           <EventInfo
-            title={event.title}
+            title={title}
             body={event.body}
             date={event.date}
             location={event.location}
