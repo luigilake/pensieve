@@ -3,7 +3,7 @@
   background-size: cover;
 }
 
-#app h1, #app h2, #app h3, #app h4, #app h5, #app p, #app span{
+#app h1, #app h2, #app h3, #app h4, #app h5, #app p, #app span, #app ul, #app li{
   color: white;
 }
 
@@ -32,4 +32,12 @@
   border: 2px solid white;
   opacity: 0.5;
   margin: 0%;
+}
+
+#show-divider {
+  border: 2px solid white;
+  opacity: 0.5;
+  margin: 0% auto;
+  width: 50%;
+  margin-bottom: 5%;
 }

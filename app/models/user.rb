@@ -17,4 +17,9 @@ class User < ApplicationRecord
     end
   end
 
+  def initialize_name
+    initialized = name.split(' ')
+    "#{initialized[0]} #{initialized[1][0]}"
+  end
+
 end

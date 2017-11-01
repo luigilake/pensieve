@@ -4,6 +4,7 @@
   margin: 0%;
   font-family: futura;
   border: 3px solid rgba(0,0,0,0);
+  outline: none;
 }
 
 .navbar button:hover {
