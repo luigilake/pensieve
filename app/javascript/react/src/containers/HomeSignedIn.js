@@ -65,7 +65,7 @@ class HomeSignedIn extends Component {
       rendered = <PersonalTimeline personals={this.state.userMemories} userName={name}/>
     } else if (this.state.timelinesFilter == 'new') {
       newClass = 'selected-homepage-button'
-      rendered = <TimelineForm addNewTimeline={this.props.addNewTimeline}/>
+      rendered = <TimelineForm addNewTimeline={this.props.addNewTimeline} changeFilterTimelines={this.changeFilterTimelines}/>
     }
 
     return(

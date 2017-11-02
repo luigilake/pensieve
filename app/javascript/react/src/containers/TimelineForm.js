@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import Dropzone from 'react-dropzone'
+import PreviewTimeline from '../components/PreviewTimeline'
 
 class TimelineForm extends Component {
   constructor(props){
@@ -8,7 +9,9 @@ class TimelineForm extends Component {
     this.state = {
       timelineTitle: '',
       timelineImage: '',
-      errors: []
+      errors: [],
+      success: '',
+      previewVisible: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.onDrop = this.onDrop.bind(this)
@@ -20,17 +23,19 @@ class TimelineForm extends Component {
     this.setState({
       timelineTitle: '',
       timelineImage: '',
-      errors: []
+      errors: [],
+      success: 'THANKS! YOUR NEW TIMELINE HAS BEEN SUBMITTED! CHECKOUT THE TIMELINE TAB!',
+      previewVisible: false
     })
   }
 
   handleChange(event){
-    this.setState({ timelineTitle: event.target.value })
+    this.setState({ timelineTitle: event.target.value, previewVisible: true })
   }
 
   onDrop(event){
     if(event.length == 1){
-      this.setState({ timelineImage: event[0], errors: [] })
+      this.setState({ timelineImage: event[0], errors: [], previewVisible: true })
     } else {
       this.setState({ errors: ['Please only upload one image.']})
     }
@@ -53,6 +58,7 @@ class TimelineForm extends Component {
         image: this.state.timelineImage
       }
       this.props.addNewTimeline(formPayload)
+      this.props.changeFilterTimelines
       this.clearForm();
     }
   }
@@ -76,10 +82,20 @@ class TimelineForm extends Component {
       height: '150px'
     }
 
+    let success;
+    if(this.state.success != ''){
+      success = <p id='personal-timeline-intro' >{this.state.success}</p>
+    }
+
+    let preview;
+    if(this.state.previewVisible){
+      preview = <PreviewTimeline image={this.state.timelineImage.preview} title={this.state.timelineTitle.toUpperCase()} />
+    }
+
     return(
       <div className='grid-container new-timeline-form'>
         <div className='grid-x new-timeline-form-inner'>
-          <h4 id='personal-timeline-intro' >HERE'S WHERE YOU CAN CREATE A NEW TIMELINE. TRY TO MAKE THE TITLE CONCISE! E.G. "HISTORY OF THE UNITED STATES", "WW2", OR "LORD OF THE RINGS TIMELINE"</h4>
+          <h4 id='personal-timeline-intro' >HERE'S WHERE YOU CAN CREATE A NEW TIMELINE. A PREVIEW WILL SHOW UP AT THE BOTTOM AS YOU CREATE THE TIMELINE. TRY TO MAKE THE TITLE CONCISE! E.G. "HISTORY OF THE UNITED STATES", "WW2", OR "LORD OF THE RINGS TIMELINE"</h4>
           <form className='small-12 medium-6 large-4 large-offset-4 medium-offset-3 cell entire-timeline-form'>
               <ul>
                 {errors}
@@ -91,11 +107,9 @@ class TimelineForm extends Component {
               <Dropzone id='new-timeline-form-dropzone' style={dropzoneStyle} onDrop={this.onDrop} value={this.state.timelineImage.preview }>PLEASE DRAG YOUR IMAGE HERE</Dropzone>
             </label>
             <button className='eventshow-memory-button' type='submit' onClick={this.handleSubmit} value='Submit'>SUBMIT</button>
+            {success}
           </form>
-          <div className='timeline-tile-preview small-12 medium-6 large-2 cell'>
-              <img className='timeline-tile-image' src={this.state.timelineImage.preview} />
-              <h3 className='timeline-tile-title'>{this.state.timelineTitle.toUpperCase()}</h3>
-          </div>
+          {preview}
         </div>
       </div>
     )
