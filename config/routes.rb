@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  if ENV['PENSIEVE_PROJECT_URL'] != 'localhost:3000'
-    get "*path" => redirect("https://#{ENV['PENSIEVE_PROJECT_URL']}/%{path}"), :constraints => { :protocol => "http://" }
-  end
 
   get "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#destroy", :as => :signout
