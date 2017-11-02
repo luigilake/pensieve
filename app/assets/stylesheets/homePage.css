@@ -46,6 +46,7 @@ img.timeline-tile-image {
   transition: 0.3s ease-in-out;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
+  object-fit: cover;
 }
 
 img.timeline-tile-image:hover {
@@ -59,6 +60,7 @@ h3.timeline-tile-title {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: futura;
+  text-align: center;
 }
 
 #personal-timeline-intro {
