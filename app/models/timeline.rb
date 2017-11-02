@@ -1,4 +1,5 @@
 class Timeline < ApplicationRecord
+  mount_uploader :image, TimelinePhotoUploader
   has_many :event_timelines
   has_many :events, through: :event_timelines
 

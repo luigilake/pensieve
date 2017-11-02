@@ -10,6 +10,8 @@ gem 'omniauth-github', '1.1.1'
 gem 'dotenv-rails'
 gem 'foundation-rails'
 gem 'jquery-rails'
+gem "carrierwave"
+gem 'fog'
 
 group :test do
   gem 'coveralls', require: false

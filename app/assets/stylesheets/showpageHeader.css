@@ -19,7 +19,7 @@ div.showpage-header-img-div{
   transform: translate(-50%, -50%);
 }
 img.showpage-header-img {
-  height: 20rem;
+  min-height: 20rem;
   object-fit: cover;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);

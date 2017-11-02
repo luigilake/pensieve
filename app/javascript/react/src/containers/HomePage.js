@@ -40,8 +40,9 @@ class HomePage extends Component {
       'method': 'POST',
       'body': formData
     })
-    .then(response => {
-
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ timelines: this.state.timelines.concat(body)})
     })
   }
 

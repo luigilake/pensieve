@@ -11,9 +11,11 @@ class Api::V1::TimelinesController < ApplicationController
   end
 
   def create
-    timeline = Timeline.new
-    timeline.title = params['title']
-    binding.pry
+    @timeline = Timeline.new
+    @timeline.title = params['title']
+    @timeline.image = params['image']
+    @timeline.save
+    render json: @timeline
   end
 
 end
