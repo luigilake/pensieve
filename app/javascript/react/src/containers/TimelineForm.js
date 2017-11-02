@@ -95,7 +95,7 @@ class TimelineForm extends Component {
     return(
       <div className='grid-container new-timeline-form'>
         <div className='grid-x new-timeline-form-inner'>
-          <h4 id='personal-timeline-intro' >HERE'S WHERE YOU CAN CREATE A NEW TIMELINE. A PREVIEW WILL SHOW UP AT THE BOTTOM AS YOU CREATE THE TIMELINE. TRY TO MAKE THE TITLE CONCISE! E.G. "HISTORY OF THE UNITED STATES", "WW2", OR "LORD OF THE RINGS TIMELINE"</h4>
+          <h4 id='personal-timeline-intro' >HERE'S WHERE YOU CAN CREATE A NEW TIMELINE. A PREVIEW WILL SHOW UP AS YOU TYPE, SO TRY TO MAKE THE TITLE CONCISE! E.G. "HISTORY OF THE UNITED STATES", "WW2", OR "LORD OF THE RINGS TIMELINE"</h4>
           <div id='preview-div'>
             {success}
             {preview}
