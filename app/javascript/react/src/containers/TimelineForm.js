@@ -84,7 +84,7 @@ class TimelineForm extends Component {
 
     let success;
     if(this.state.success != ''){
-      success = <p id='personal-timeline-intro' >{this.state.success}</p>
+      success = <h4 id='personal-timeline-intro' >{this.state.success}</h4>
     }
 
     let preview;
@@ -96,6 +96,10 @@ class TimelineForm extends Component {
       <div className='grid-container new-timeline-form'>
         <div className='grid-x new-timeline-form-inner'>
           <h4 id='personal-timeline-intro' >HERE'S WHERE YOU CAN CREATE A NEW TIMELINE. A PREVIEW WILL SHOW UP AT THE BOTTOM AS YOU CREATE THE TIMELINE. TRY TO MAKE THE TITLE CONCISE! E.G. "HISTORY OF THE UNITED STATES", "WW2", OR "LORD OF THE RINGS TIMELINE"</h4>
+          <div id='preview-div'>
+            {success}
+            {preview}
+          </div>
           <form className='small-12 medium-6 large-4 large-offset-4 medium-offset-3 cell entire-timeline-form'>
               <ul>
                 {errors}
@@ -107,9 +111,7 @@ class TimelineForm extends Component {
               <Dropzone id='new-timeline-form-dropzone' style={dropzoneStyle} onDrop={this.onDrop} value={this.state.timelineImage.preview }>PLEASE DRAG YOUR IMAGE HERE</Dropzone>
             </label>
             <button className='eventshow-memory-button' type='submit' onClick={this.handleSubmit} value='Submit'>SUBMIT</button>
-            {success}
           </form>
-          {preview}
         </div>
       </div>
     )

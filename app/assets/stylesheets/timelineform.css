@@ -2,6 +2,10 @@
   font-family: futura;
 }
 
+#preview-div {
+  height: 10rem;
+}
+
 #new-timeline-form-dropzone:hover {
   background: white;
 }

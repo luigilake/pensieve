@@ -142,5 +142,5 @@ events_data = [
 
 events_data.each do |event|
   created_event = Event.find_or_create_by(event)
-  EventTimeline.find_or_create_by(event: created_event, timeline: test_timeline)
+  EventTimeline.find_or_create_by(event: created_event, timeline_id: 1)
 end
