@@ -13,7 +13,7 @@ class TimelineShow extends Component {
 
   componentDidMount(){
     let id = this.props.params.id
-    fetch(`http://localhost:3000/api/v1/timelines/${id}`)
+    fetch(`/api/v1/timelines/${id}`)
     .then(response => response.json())
     .then(response => {
       this.setState({ timeline: response })
