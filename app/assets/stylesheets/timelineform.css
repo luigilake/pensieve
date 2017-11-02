@@ -1,0 +1,49 @@
+#new-timeline-form-dropzone {
+  font-family: futura;
+}
+
+#new-timeline-form-dropzone:hover {
+  background: white;
+}
+
+div.timeline-tile-preview {
+  margin: 0% 2% 2% 2%;
+  width: 20rem;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 10rem;
+}
+
+div.new-timeline-form-inner {
+  text-align: center;
+  margin: 0% 5%;
+}
+
+div.new-timeline-form-preview {
+  text-align: center;
+}
+
+input.new-timeline-form-input {
+  background: red;
+}
+
+input.new-timeline-form-input {
+  opacity: 1;
+  background: #222222;
+}
+
+label.new-timeline-form-label {
+  color: white;
+  font-family: futura;
+}
+
+label.new-timeline-form-image-label {
+  font-family: futura;
+  color: white;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  font-family: verdana;
+  font-size: 1em;
+  text-align: center;
+}

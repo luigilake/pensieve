@@ -10,6 +10,7 @@ class HomePage extends Component {
       current_user: {},
       timelines: []
     }
+    this.addNewTimeline = this.addNewTimeline.bind(this)
   }
 
   componentDidMount(){
@@ -30,10 +31,25 @@ class HomePage extends Component {
     })
   }
 
+  addNewTimeline(formPayload){
+    let formData = new FormData();
+    for(var name in formPayload){
+      formData.append(name, formPayload[name])
+    }
+    fetch(`/api/v1/timelines`, {
+      'method': 'POST',
+      'body': formData
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({ timelines: this.state.timelines.concat(body)})
+    })
+  }
+
   render(){
     let homeStatus;
     if(this.state.current_user){
-      homeStatus = <HomeSignedIn timelines={this.state.timelines} user={this.state.current_user}/>
+      homeStatus = <HomeSignedIn timelines={this.state.timelines} user={this.state.current_user} addNewTimeline={this.addNewTimeline}/>
     } else {
       homeStatus = <TimelinesIndex timelines={this.state.timelines}/>
     }
