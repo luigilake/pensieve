@@ -13,7 +13,7 @@ class TimelineShow extends Component {
 
   componentDidMount(){
     let id = this.props.params.id
-    fetch(`http://localhost:3000/api/v1/timelines/${id}`)
+    fetch(`/api/v1/timelines/${id}`)
     .then(response => response.json())
     .then(response => {
       this.setState({ timeline: response })
@@ -21,9 +21,10 @@ class TimelineShow extends Component {
   }
 
   render(){
-    let state = this.state.timeline
+    let image;
     let title;
     if(this.state.timeline.title){
+      image = this.state.timeline.image.url
       title = this.state.timeline.title.toUpperCase();
     }
 
@@ -31,7 +32,7 @@ class TimelineShow extends Component {
       <div className='showpage-total'>
         <div className='showpage-header'>
           <div className='showpage-header-img-div'>
-            <img className='showpage-header-img' src={state.image}/>
+            <img className='showpage-header-img' src={image}/>
           </div>
           <h1 className='showpage-header-title'>{title}</h1>
         </div>

@@ -41,8 +41,6 @@ div.eventshow-info {
   text-align: right;
   margin-top: 4%;
   padding-right: 4%;
-  max-height: 700px;
-  overflow: scroll;
 }
 
 div.eventshow-info h1 {
