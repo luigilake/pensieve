@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get "current_user" => "users#current"
 
       resources :timelines do
         resources :events, only: [:index]
@@ -15,8 +16,9 @@ Rails.application.routes.draw do
         resources :memories
       end
 
-      resources :users, only: [:index, :show]
+      resources :users, only: [:index, :show, :destroy]
       resources :events, only: [:index, :show]
+
     end
   end
 

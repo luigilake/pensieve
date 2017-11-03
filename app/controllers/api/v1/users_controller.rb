@@ -1,7 +1,8 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
-    render json: current_user
+    render json: User.all
   end
 
   def show
@@ -15,6 +16,17 @@ class Api::V1::UsersController < ApplicationController
       }
     end
     render json: memories
+  end
+
+  def destroy
+    user_id = params[:id]
+    user_to_delete = User.find(user_id)
+    user_to_delete.delete
+    render json: User.all
+  end
+
+  def current
+    render json: current_user
   end
 
 end
