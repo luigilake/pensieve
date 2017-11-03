@@ -31,12 +31,12 @@ class TimelineFormContainer extends Component {
   }
 
   handleChange(event){
-    this.setState({ timelineTitle: event.target.value, previewVisible: true })
+    this.setState({ timelineTitle: event.target.value, previewVisible: true, success: '' })
   }
 
   onDrop(event){
     if(event.length == 1){
-      this.setState({ timelineImage: event[0], errors: [], previewVisible: true })
+      this.setState({ timelineImage: event[0], errors: [], previewVisible: true, success: '' })
     } else {
       this.setState({ errors: ['Please only upload one image.']})
     }

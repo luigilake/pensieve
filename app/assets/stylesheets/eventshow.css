@@ -20,6 +20,7 @@ button.eventshow-memory-button {
   background: none;
   transition: 0.3s ease-in-out;
   margin: 0%;
+  margin-bottom: 2%;
   font-family: futura;
   border: 3px solid rgba(0,0,0,0);
   outline: none;
