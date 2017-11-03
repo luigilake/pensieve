@@ -8,7 +8,8 @@ class HomePage extends Component {
     super(props);
     this.state = {
       current_user: {},
-      timelines: []
+      timelines: [],
+      loading: false
     }
     this.addNewTimeline = this.addNewTimeline.bind(this)
   }
@@ -32,6 +33,7 @@ class HomePage extends Component {
   }
 
   addNewTimeline(formPayload){
+    this.setState({ loading: true })
     let formData = new FormData();
     for(var name in formPayload){
       formData.append(name, formPayload[name])
@@ -42,17 +44,19 @@ class HomePage extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ timelines: this.state.timelines.concat(body)})
+      this.setState({ timelines: this.state.timelines.concat(body), loading: false })
     })
   }
 
   render(){
+
     let homeStatus;
     if(this.state.current_user){
-      homeStatus = <HomeSignedIn timelines={this.state.timelines} user={this.state.current_user} addNewTimeline={this.addNewTimeline}/>
+      homeStatus = <HomeSignedIn timelines={this.state.timelines} user={this.state.current_user} addNewTimeline={this.addNewTimeline} loading={this.state.loading}/>
     } else {
-      homeStatus = <TimelinesIndex timelines={this.state.timelines}/>
+      homeStatus = <TimelinesIndex timelines={this.state.timelines} />
     }
+
     return(
       <div>
         <img id='main-logo' src='https://image.ibb.co/imeFqm/Pensive_project_logo_V4.png' alt='logo'/>

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-import Dropzone from 'react-dropzone'
 import PreviewTimeline from '../components/PreviewTimeline'
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import TimelineForm from '../components/TimelineForm'
 
-class TimelineForm extends Component {
+class TimelineFormContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -64,14 +65,12 @@ class TimelineForm extends Component {
   }
 
   render(){
-    console.log(this.state.timelineTitle)
-    console.log(this.state.timelineImage)
 
     let errors;
     if(this.state.errors.length > 0){
       errors = this.state.errors.map( (error, index) => {
         return(
-          <li key={index} >{error}</li>
+          <p id='personal-timeline-intro' key={index} >{error}</p>
         )
       })
     }
@@ -83,8 +82,24 @@ class TimelineForm extends Component {
     }
 
     let success;
-    if(this.state.success != ''){
+    if(this.state.success != '' && !this.props.loading ){
       success = <h4 id='personal-timeline-intro' >{this.state.success}</h4>
+    }
+
+    let style = {
+      container: {
+        position: 'relative',
+      },
+      refresh: {
+        display: 'inline-block',
+        position: 'relative',
+      },
+    };
+
+
+    let loading;
+    if(this.props.loading){
+      loading = <div style={style.container}><RefreshIndicator size={50} left={0} top={25} loadingColor="#FF9800" status="loading" style={style.refresh}/></div>
     }
 
     let preview;
@@ -93,29 +108,20 @@ class TimelineForm extends Component {
     }
 
     return(
-      <div className='grid-container new-timeline-form'>
-        <div className='grid-x new-timeline-form-inner'>
-          <h4 id='personal-timeline-intro' >HERE'S WHERE YOU CAN CREATE A NEW TIMELINE. A PREVIEW WILL SHOW UP AS YOU TYPE, SO TRY TO MAKE THE TITLE CONCISE! E.G. "HISTORY OF THE UNITED STATES", "WW2", OR "LORD OF THE RINGS TIMELINE"</h4>
-          <div id='preview-div'>
-            {success}
-            {preview}
-          </div>
-          <form className='small-12 medium-6 large-4 large-offset-4 medium-offset-3 cell entire-timeline-form'>
-              <ul>
-                {errors}
-              </ul>
-            <label className='new-timeline-form-label' >
-              <input className='new-timeline-form-input' type='text' onChange={this.handleChange} value={this.state.timelineTitle} placeholder={'TIMELINE TITLE'}/>
-            </label>
-            <label className='new-timeline-form-image-label'>
-              <Dropzone id='new-timeline-form-dropzone' style={dropzoneStyle} onDrop={this.onDrop} value={this.state.timelineImage.preview }>PLEASE DRAG YOUR IMAGE HERE</Dropzone>
-            </label>
-            <button className='eventshow-memory-button' type='submit' onClick={this.handleSubmit} value='Submit'>SUBMIT</button>
-          </form>
-        </div>
-      </div>
+      <TimelineForm
+        success={success}
+        preview={preview}
+        loading={loading}
+        errors={errors}
+        handleChange={this.handleChange}
+        titleValue={this.state.timelineTitle}
+        dropzoneStyle={dropzoneStyle}
+        onDrop={this.onDrop}
+        imageValue={this.state.timelineImage.preview}
+        handleSubmit={this.handleSubmit}
+      />
     )
   }
 }
 
-export default TimelineForm
+export default TimelineFormContainer

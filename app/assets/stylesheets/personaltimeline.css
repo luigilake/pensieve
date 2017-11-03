@@ -134,6 +134,10 @@ div.personal-timeline-div {
   font-family: futura;
 }
 
+div.personal-timeline-div div.timeline-content:hover {
+  background: rgba(8, 8, 8, 0.25);
+}
+
 div.timeline-content h3 {
   font-family: futura;
 }

@@ -2,7 +2,9 @@ class Api::V1::TimelinesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: Timeline.all
+    @timelines = Timeline.all.order('lower(title) ASC')
+
+    render json: @timelines
   end
 
   def show

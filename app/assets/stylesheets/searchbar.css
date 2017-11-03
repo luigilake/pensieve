@@ -1,0 +1,27 @@
+.input-group-rounded .input-group-field {
+  border-radius: 5000px 5000px 5000px 5000px;
+  font-family: futura;
+  margin-bottom: 2%;
+  text-align: center;
+  background: #444444;
+  opacity: 0.5;
+  border: none;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.input-group-rounded .input-group-field:focus {
+  background: #1a1a1a;
+  opacity: 1;
+}
+
+.input-group-rounded {
+  margin: 0% 30%;
+  padding-top: 2%;
+}
+
+@media only screen and (max-width: 790px) {
+  .input-group-rounded {
+    margin: 0% 10%;
+  }
+}

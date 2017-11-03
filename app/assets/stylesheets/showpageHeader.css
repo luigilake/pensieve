@@ -56,3 +56,12 @@ h1.showpage-header-title {
   transform: translate(-50%, -50%);
   font-family: futura;
 }
+
+div.timeline-content-title-hover {
+  transition: 0.3s ease-in-out;
+  padding: 1%;
+}
+
+div.timeline-content-title-hover:hover {
+  background: rgba(8, 8, 8, 0.25);
+}

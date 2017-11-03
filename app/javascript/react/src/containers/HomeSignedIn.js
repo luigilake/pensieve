@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router';
 import TimelinesIndex from '../components/TimelinesIndex'
 import PersonalTimeline from '../components/PersonalTimeline'
-import TimelineForm from './TimelineForm'
+import TimelineFormContainer from './TimelineFormContainer'
 
 class HomeSignedIn extends Component {
   constructor(props){
@@ -65,7 +65,7 @@ class HomeSignedIn extends Component {
       rendered = <PersonalTimeline personals={this.state.userMemories} userName={name}/>
     } else if (this.state.timelinesFilter == 'new') {
       newClass = 'selected-homepage-button'
-      rendered = <TimelineForm addNewTimeline={this.props.addNewTimeline} changeFilterTimelines={this.changeFilterTimelines}/>
+      rendered = <TimelineFormContainer addNewTimeline={this.props.addNewTimeline} changeFilterTimelines={this.changeFilterTimelines} loading={this.props.loading}/>
     }
 
     return(
