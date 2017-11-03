@@ -21,7 +21,7 @@ class TimelineShow extends Component {
       this.setState({ timeline: response })
     })
 
-    fetch(`/api/v1/users.json`, {
+    fetch(`/api/v1/current_user.json`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Content-Type':'application/json'}

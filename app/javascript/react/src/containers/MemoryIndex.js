@@ -24,7 +24,7 @@ class MemoryIndex extends Component {
       this.setState({ memoryIndex: response })
     })
 
-    fetch(`/api/v1/users.json`, {
+    fetch(`/api/v1/current_user.json`, {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Content-Type':'application/json'}

@@ -1,0 +1,126 @@
+div.all-user-profiles {
+  text-align: center;
+}
+
+.card-user-container-admin {
+  margin-bottom: 1rem;
+  background-color: rgba(19, 19, 19, 0.6);
+  color: #0a0a0a;
+  overflow: hidden;
+  padding: 0;
+  padding-top: 2%;
+  border-radius: 25px;
+  border: 3px solid rgba(189, 189, 189, 0.28);
+  min-width: 15rem;
+  min-height: 22rem;
+  max-width: 15rem;
+  max-height: 22rem;
+  transition: 0.7s ease-in-out;
+  margin: 2%;
+  display: inline-block;
+
+}
+
+.card-user-container-admin .card-user-avatar .user-image {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  width: 11.875rem;
+  height: 11.875rem;
+  padding: 0.9375rem;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  transition: 0.7s ease-in-out;
+}
+
+.card-user-container-admin .card-user-avatar .user-image:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.card-user-container-admin .card-user-bio {
+  padding: 1rem;
+  text-align: center;
+  font-family: futura;
+}
+
+.card-user-container-admin .card-user-bio a {
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.card-user-container-admin .card-user-bio a:hover {
+  color: yellow;
+}
+
+
+.card-user-container-admin .card-user-bio .location-icon,
+.card-user-container-admin .card-user-bio .location-text {
+  display: inline-block;
+  padding: 0 0.3125rem;
+}
+
+
+.card-user-container {
+  margin-bottom: 1rem;
+  background-color: none;
+  color: #0a0a0a;
+  overflow: hidden;
+  padding: 0;
+  padding-top: 2%;
+  border-radius: 25px;
+  border: 3px solid rgba(189, 189, 189, 0.28);
+  transition: 0.7s ease-in-out;
+  margin: 2%;
+  display: inline-block;
+  min-width: 15rem;
+  min-height: 25rem;
+  max-width: 15rem;
+  max-height: 25rem;
+
+}
+
+.card-user-container .card-user-avatar .user-image {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  width: 11.875rem;
+  height: 11.875rem;
+  padding: 0.9375rem;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  transition: 0.7s ease-in-out;
+}
+
+.card-user-container .card-user-avatar .user-image:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.card-user-container .card-user-bio {
+  padding: 1rem;
+  text-align: center;
+  font-family: futura;
+}
+
+.card-user-container .card-user-bio a {
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.card-user-container .card-user-bio a:hover {
+  color: yellow;
+}
+
+
+.card-user-container .card-user-bio .location-icon,
+.card-user-container .card-user-bio .location-text {
+  display: inline-block;
+  padding: 0 0.3125rem;
+}
