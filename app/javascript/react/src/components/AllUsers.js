@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 const AllUsers = props => {
 
   let users = props.users.map( user => {
-
     if(user.id != props.current.id){
       let deleteUser = () => {
         props.deleteUser(user.id)
@@ -19,7 +18,7 @@ const AllUsers = props => {
             <h4>{user.name}</h4>
             <a href={`mailto:${user.email}`}>{user.email}</a>
           </div>
-          <button className='eventshow-memory-button' onClick={deleteUser} >DELETE</button>
+          <span onClick={deleteUser} >✘</span>
         </div>
       )
     }

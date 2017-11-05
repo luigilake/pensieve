@@ -20,4 +20,11 @@ class Api::V1::TimelinesController < ApplicationController
     render json: @timeline
   end
 
+  def destroy
+    timeline_id = params[:id]
+    timeline_to_delete = Timeline.find(timeline_id)
+    timeline_to_delete.delete
+    render json: Timeline.all
+  end
+
 end
