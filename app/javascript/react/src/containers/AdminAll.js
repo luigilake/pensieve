@@ -4,6 +4,7 @@ import UserProfile from '../components/UserProfile'
 import AdminUsers from './AdminUsers'
 import AdminTimelines from './AdminTimelines'
 import AdminEvents from './AdminEvents'
+import AdminMemories from './AdminMemories'
 
 class AdminAll extends Component {
   constructor(props){
@@ -59,6 +60,7 @@ class AdminAll extends Component {
      adminUsers,
      adminTimelines,
      adminEvents,
+     adminMemories,
      buttonClass = 'eventshow-memory-button',
      userClick,
      timelineClick,
@@ -81,6 +83,7 @@ class AdminAll extends Component {
       adminUsers = <AdminUsers current={this.state.currentUser} deleteUser={this.deleteUser} userClick={userClick}/>
       adminTimelines = <AdminTimelines timelineClick={timelineClick} />
       adminEvents = <AdminEvents eventClick={eventClick} />
+      adminMemories = <AdminMemories memoryClick={memoryClick}/>
     }
 
     return(
@@ -97,6 +100,7 @@ class AdminAll extends Component {
         {adminUsers}
         {adminTimelines}
         {adminEvents}
+        {adminMemories}
       </div>
     )
   }
