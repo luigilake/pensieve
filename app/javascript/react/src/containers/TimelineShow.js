@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import Timeline from './Timeline'
+import NewEventFormContainer from './NewEventFormContainer'
 
 class TimelineShow extends Component {
   constructor(props){
     super(props);
     this.state = {
       timeline: {},
-      timelines: [],
       userSignedIn: false,
-      id: this.props.params.id
+      id: this.props.params.id,
+      selectedTab: 'events'
     }
+    this.selectEvents = this.selectEvents.bind(this)
+    this.selectNew = this.selectNew.bind(this)
   }
 
   componentDidMount(){
@@ -34,7 +37,20 @@ class TimelineShow extends Component {
     })
   }
 
+  selectEvents(){
+    if(this.state.selectedTab != 'events'){
+      this.setState({ selectedTab: 'events' })
+    }
+  }
+
+  selectNew(){
+    if(this.state.selectedTab != 'new'){
+      this.setState({ selectedTab: 'new' })
+    }
+  }
+
   render(){
+
     let image;
     let title;
     if(this.state.timeline.title){
@@ -42,10 +58,17 @@ class TimelineShow extends Component {
       title = this.state.timeline.title.toUpperCase();
     }
 
-    let addNewEvent;
-    let hiddenClass;
+    let buttons;
     if(this.state.userSignedIn){
-      addNewEvent = <button className='eventshow-memory-button' > ADD NEW EVENT</button>
+      buttons = <div><button className='eventshow-memory-button' onClick={this.selectEvents} >EVENTS</button><button className='eventshow-memory-button' onClick={this.selectNew} >ADD NEW EVENT</button></div>
+    }
+
+    let selectedEvents;
+    let selectedNewEvent;
+    if(this.state.selectedTab == 'events'){
+      selectedEvents = true;
+    } else if (this.state.selectedTab == 'new'){
+      selectedNewEvent = true;
     }
 
     return(
@@ -56,9 +79,10 @@ class TimelineShow extends Component {
           </div>
           <h1 className='showpage-header-title'>{title}</h1>
         </div>
-        {addNewEvent}
+        {buttons}
         <hr id='show-divider'/>
-        <Timeline id={this.state.id} />
+        <Timeline id={this.state.id} selected={selectedEvents}/>
+        <NewEventFormContainer selected={selectedNewEvent} />
       </div>
     )
   }

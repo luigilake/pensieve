@@ -6,8 +6,6 @@
 #   movies = Movie.find_or_create_by([{ name: 'Star Wars' }, { name: 'Lord of the Rings')
 #   Character.create(name: 'Luke', movie: movies.first)
 
-test_timeline = Timeline.find_or_create_by(title: 'History of Gondor', image: 'http://img.sparknotes.com/content/sparklife/sparktalk/minastirithonindiegogomain_LargeWide.jpg')
-
 events_data = [
   {
     title: 'Aragorn II Elessar is crowned the King of Gondor',
@@ -142,5 +140,5 @@ events_data = [
 
 events_data.each do |event|
   created_event = Event.find_or_create_by(event)
-  EventTimeline.find_or_create_by(event: created_event, timeline_id: 1)
+  EventTimeline.find_or_create_by(event: created_event, timeline_id: 51)
 end
