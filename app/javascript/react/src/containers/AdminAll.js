@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import UserProfile from '../components/UserProfile'
-import AllUsers from '../components/AllUsers'
+import AdminUsers from './AdminUsers'
+import AdminTimelines from './AdminTimelines'
+import AdminEvents from './AdminEvents'
+import AdminMemories from './AdminMemories'
 
-class AdminAll extends Component{
+class AdminAll extends Component {
   constructor(props){
     super(props);
     this.state = {
       currentUser: {},
-      allUsers: []
+      selectedTab: 'users'
     }
-    this.deleteUser = this.deleteUser.bind(this);
+    this.userClick = this.userClick.bind(this);
+    this.timelineClick = this.timelineClick.bind(this);
+    this.eventClick = this.eventClick.bind(this);
+    this.memoryClick = this.memoryClick.bind(this)
   }
 
   componentDidMount(){
@@ -23,41 +29,78 @@ class AdminAll extends Component{
     .then(response => {
       this.setState({ currentUser: response })
     })
-
-    fetch(`/api/v1/users.json`)
-    .then(response => response.json())
-    .then(response => {
-      this.setState({ allUsers: response })
-    })
   }
 
-  deleteUser(user_id){
-    fetch(`/api/v1/users/${user_id}`,{
-      credentials: 'same-origin',
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json'}
-    })
-    .then(response => response.json())
-    .then(body =>{
-      this.setState({ allUsers: body })
-    })
+  userClick(){
+    if(this.state.selectedTab != 'users'){
+      this.setState({ selectedTab: 'users' })
+    }
+  }
+
+  timelineClick(){
+    if(this.state.selectedTab != 'timelines'){
+      this.setState({ selectedTab: 'timelines' })
+    }
+  }
+
+  eventClick(){
+    if(this.state.selectedTab != 'events'){
+      this.setState({ selectedTab: 'events' })
+    }
+  }
+
+  memoryClick(){
+    if(this.state.selectedTab != 'memories'){
+      this.setState({ selectedTab: 'memories' })
+    }
   }
 
   render(){
-    let userProfile;
-    let allUsers;
-    
+    let userProfile,
+     adminUsers,
+     adminTimelines,
+     adminEvents,
+     adminMemories,
+     buttonClass = 'eventshow-memory-button',
+     userClick,
+     timelineClick,
+     eventClick,
+     memoryClick;
+
     if(this.state.currentUser.admin){
       userProfile = <UserProfile current={this.state.currentUser}/>
-      allUsers = <AllUsers users={this.state.allUsers} current={this.state.currentUser} deleteUser={this.deleteUser}/>
+
+      if(this.state.selectedTab == 'users') {
+        userClick = true;
+      } else if (this.state.selectedTab == 'timelines'){
+        timelineClick = true;
+      } else if (this.state.selectedTab == 'events'){
+        eventClick = true;
+      } else if (this.state.selectedTab == 'memories'){
+        memoryClick = true;
+      }
+
+      adminUsers = <AdminUsers current={this.state.currentUser} deleteUser={this.deleteUser} userClick={userClick}/>
+      adminTimelines = <AdminTimelines timelineClick={timelineClick} />
+      adminEvents = <AdminEvents eventClick={eventClick} />
+      adminMemories = <AdminMemories memoryClick={memoryClick}/>
     }
 
     return(
       <div className='grid-container'>
         <div className='grid-x all-user-profiles'>
           {userProfile}
-          {allUsers}
         </div>
+        <div className='grid-x all-user-profiles'>
+          <button className={buttonClass} onClick={this.userClick}>ALL USERS</button>
+          <button className={buttonClass} onClick={this.timelineClick}>ALL TIMELINES</button>
+          <button className={buttonClass} onClick={this.eventClick}>ALL EVENTS</button>
+          <button className={buttonClass} onClick={this.memoryClick}>ALL MEMORIES</button>
+        </div>
+        {adminUsers}
+        {adminTimelines}
+        {adminEvents}
+        {adminMemories}
       </div>
     )
   }

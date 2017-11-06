@@ -1,4 +1,5 @@
 class Api::V1::EventsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     if params[:timeline_id]
@@ -20,6 +21,13 @@ class Api::V1::EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     render json: @event
+  end
+
+  def destroy
+    event_id = params[:id]
+    event_to_delete = Event.find(event_id)
+    event_to_delete.delete
+    render json: Event.all
   end
 
 end

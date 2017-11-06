@@ -24,10 +24,15 @@ const PersonalTimeline = props => {
     )
   })
 
+  let username;
+  if(props.userName){
+    username = props.userName.toUpperCase()
+  }
+
   return(
     <div>
       <div>
-        <h4 id='personal-timeline-intro' >HI, {props.userName.toUpperCase()}! THIS IS YOUR PERSONAL TIMELINE. ALL THE MEMORIES YOU'VE SUBMITTED ARE PLACED HERE IN CHRONOLOGICAL ORDER. IF YOU CLICK ON ONE OF THEM, IT WILL LEAD YOU TO THE EVENT YOU LEFT A MEMORY ON.</h4>
+        <h4 id='personal-timeline-intro' >HI, {username}! THIS IS YOUR PERSONAL TIMELINE. ALL THE MEMORIES YOU'VE SUBMITTED ARE PLACED HERE IN CHRONOLOGICAL ORDER. IF YOU CLICK ON ONE OF THEM, IT WILL LEAD YOU TO THE EVENT YOU LEFT A MEMORY ON.</h4>
       </div>
       <div className='timeline all-personal-timeline'>
         {personals}
