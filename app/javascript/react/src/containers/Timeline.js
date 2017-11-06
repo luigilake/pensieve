@@ -6,22 +6,14 @@ class Timeline extends Component {
   constructor(props){
     super(props);
     this.state = {
-      events: []
+      events: this.props.events
     }
-  }
-
-  componentDidMount(){
-    fetch(`/api/v1/timelines/${this.props.id}/events`)
-    .then(response => response.json())
-    .then(response => {
-      this.setState({ events: response })
-    })
   }
 
   render(){
     let events;
-    if(this.props.selected){
-      events = this.state.events.map( (event, index) => {
+    if(this.props.selected && this.props.events){
+      events = this.props.events.map( (event, index) => {
         let right;
         if(index % 2 != 0){
           right = ' right'

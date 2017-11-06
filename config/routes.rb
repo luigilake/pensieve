@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get "current_user" => "users#current"
 
       resources :timelines do
-        resources :events, only: [:index]
+        resources :events, only: [:index, :create]
       end
 
       resources :events, only: [:show] do

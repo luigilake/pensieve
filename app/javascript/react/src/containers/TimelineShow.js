@@ -10,10 +10,12 @@ class TimelineShow extends Component {
       timeline: {},
       userSignedIn: false,
       id: this.props.params.id,
-      selectedTab: 'events'
+      selectedTab: 'events',
+      events: []
     }
-    this.selectEvents = this.selectEvents.bind(this)
-    this.selectNew = this.selectNew.bind(this)
+    this.selectEvents = this.selectEvents.bind(this);
+    this.selectNew = this.selectNew.bind(this);
+    this.createEvent = this.createEvent.bind(this);
   }
 
   componentDidMount(){
@@ -22,6 +24,12 @@ class TimelineShow extends Component {
     .then(response => response.json())
     .then(response => {
       this.setState({ timeline: response })
+    })
+
+    fetch(`/api/v1/timelines/${id}/events`)
+    .then(response => response.json())
+    .then(response => {
+      this.setState({ events: response })
     })
 
     fetch(`/api/v1/current_user.json`, {
@@ -33,6 +41,25 @@ class TimelineShow extends Component {
     .then(response => {
       if(response){
         this.setState({ userSignedIn: true })
+      }
+    })
+  }
+
+  createEvent(formPayload){
+    let timeline_id = this.state.timeline.id
+    fetch(`/api/v1/timelines/${timeline_id}/events`, {
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({ memory: formPayload })
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response){
+        this.setState({ events: response, selectedTab: 'events' })
       }
     })
   }
@@ -53,9 +80,11 @@ class TimelineShow extends Component {
 
     let image;
     let title;
+    let events;
     if(this.state.timeline.title){
-      image = this.state.timeline.image.url
+      image = this.state.timeline.image.url;
       title = this.state.timeline.title.toUpperCase();
+      events = this.state.events;
     }
 
     let buttons;
@@ -81,8 +110,8 @@ class TimelineShow extends Component {
         </div>
         {buttons}
         <hr id='show-divider'/>
-        <Timeline id={this.state.id} selected={selectedEvents}/>
-        <NewEventFormContainer selected={selectedNewEvent} />
+        <Timeline id={this.state.id} selected={selectedEvents} events={events}/>
+        <NewEventFormContainer selected={selectedNewEvent} createEvent={this.createEvent}/>
       </div>
     )
   }
