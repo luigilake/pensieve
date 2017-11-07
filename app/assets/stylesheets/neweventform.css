@@ -3,7 +3,7 @@ label.new-event-form-search-label {
   color: white;
   font-family: futura;
   font-size: 1rem;
-  min-width: 45rem;
+  min-width: 60%;
 }
 
 input.new-event-form-search-input {
@@ -29,6 +29,7 @@ div.new-event-form-options {
   background: rgba(34, 34, 34, 0.7);
   margin: 1% 2% 2% 2%;
   padding: 2%;
+  overflow: hidden;
 }
 
 div.new-event-form-options h4 {
