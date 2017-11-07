@@ -87,9 +87,9 @@ class MemoryIndex extends Component {
       renderedComponent = <MemoryForm eventId={this.state.eventId} addNewMemory={this.addNewMemory}/>
     }
 
-    let newReviewButton;
+    let newMemoryButton;
     if(this.state.signedIn){
-      newReviewButton = <button className='eventshow-memory-button large-6 medium-6 small-12 cell' onClick={this.changeMemoryForm} >ADD NEW MEMORY</button>
+      newMemoryButton = <button className='eventshow-memory-button large-6 medium-6 small-12 cell' onClick={this.changeMemoryForm} >ADD NEW MEMORY</button>
     }
 
     return(
@@ -97,7 +97,7 @@ class MemoryIndex extends Component {
         <div className='grid-container'>
           <div className='grid-x'>
             <button className='eventshow-memory-button large-6 medium-6 small-12 cell' onClick={this.changeMemoryIndex} >MEMORIES</button>
-            {newReviewButton}
+            {newMemoryButton}
           </div>
         </div>
         <div className='eventshow-memory-list'>

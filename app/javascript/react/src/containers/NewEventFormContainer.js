@@ -145,7 +145,7 @@ class NewEventFormContainer extends Component {
       selectSearchOption={this.onOptionSelect}/>
     }
 
-    if(this.state.finalStep && this.state.finalConfirmation.title){
+    if(this.state.finalStep && this.state.finalConfirmation.title && this.props.selected){
       finalStep = <EventFormConfirmation finalData={this.state.finalConfirmation} onDateSelect={this.onDateSelect} handleLocationChange={this.handleLocationChange} locationValue={this.state.location} finalSubmit={this.finalSubmit}/>
     }
 

@@ -10,8 +10,8 @@ const EventFormSearch = props => {
   return(
     <div>
       <form>
-        <label>SEARCH FOR AN EVENT:
-          <input value={props.searchValue} onChange={props.onChangeSearch}/>
+        <label className='new-event-form-search-label' >SEARCH FOR AN EVENT:
+          <input className='new-event-form-search-input' value={props.searchValue} onChange={props.onChangeSearch} placeholder='Attack on Pearl Harbor, etc. on Wikipedia'/>
         </label>
         <button className='eventshow-memory-button' type='submit' value='Submit' onClick={props.submitSearch}>SEARCH</button>
         {searchOptions}

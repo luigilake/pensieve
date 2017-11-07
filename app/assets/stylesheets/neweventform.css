@@ -1,0 +1,85 @@
+
+label.new-event-form-search-label {
+  color: white;
+  font-family: futura;
+  font-size: 1rem;
+  min-width: 45rem;
+}
+
+input.new-event-form-search-input {
+  background: #222222;
+  width: 30%;
+  border: none;
+  color: white;
+  font-family: futura;
+  font-size: 1rem;
+  opacity: 0.7;
+  margin: 0% 1%;
+  padding: 0.5%;
+  outline-color: white;
+}
+
+input.new-event-form-search-input:focus {
+  opacity: 1;
+  border: none;
+  outline-color: white;
+}
+
+div.new-event-form-options {
+  background: rgba(34, 34, 34, 0.7);
+  margin: 1% 2% 2% 2%;
+  padding: 2%;
+}
+
+div.new-event-form-options h4 {
+  font-family: futura;
+}
+
+input.new-event-form-option-submit {
+  padding: 1% 2%;
+  font-family: futura;
+  font-size: 1rem;
+  color: white;
+  background: none;
+  margin-bottom: 2%;
+  transition: 0.5s ease-in-out;
+  border: 3px solid rgba(0,0,0,0);
+}
+
+input.new-event-form-option-submit:hover {
+  border-bottom: 3px solid white;
+}
+
+div.final-new-event-form-div {
+  margin: 5%;
+  margin-top: 1%;
+  background: rgba(34, 34, 34, 0.55);
+  padding: 3%;
+  font-family: futura;
+}
+
+div.final-new-event-form-div h3 {
+  font-family: futura;
+}
+
+label.new-event-form-event-label {
+  margin-top: 2%;
+  color: white;
+  font-family: futura;
+  font-size: 1rem;
+}
+
+input.new-event-form-event-input {
+  font-family: futura;
+  font-size: 1rem;
+  opacity: 0.7;
+  margin: 0% 1%;
+  padding: 0.5%;
+  outline-color: white;
+}
+
+input.new-event-form-event-input:focus {
+  opacity: 1;
+  border: none;
+  outline-color: white;
+}
