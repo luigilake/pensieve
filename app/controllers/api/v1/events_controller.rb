@@ -63,6 +63,11 @@ class Api::V1::EventsController < ApplicationController
     event_id = params[:id]
     event_to_delete = Event.find(event_id)
     event_to_delete.delete
+
+    event_timelines_to_delete = EventTimeline.where(event_id: event_id)
+    event_timelines_to_delete.map do |et|
+      et.delete
+    end
     render json: Event.all
   end
 
