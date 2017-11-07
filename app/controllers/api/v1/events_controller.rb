@@ -43,6 +43,19 @@ class Api::V1::EventsController < ApplicationController
         }
       end
       render json: @events
+    else
+      existing_event = Event.find_by(title: new_event.title)
+      EventTimeline.create(event: existing_event, timeline_id: timeline_id)
+      @timeline = Timeline.find(timeline_id)
+      @events = @timeline.events.order('date DESC').map do |event|
+        {
+          id: event.id,
+          title: event.title,
+          snippet: event.snippet,
+          date: event.date.strftime('%^B %d %Y')
+        }
+      end
+      render json: @events
     end
   end
 
