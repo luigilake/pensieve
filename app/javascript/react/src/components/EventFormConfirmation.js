@@ -10,7 +10,8 @@ const EventFormConfirmation = props => {
     color: 'white'
   }
   return(
-    <div className='final-new-event-form-div' >
+    <div className='final-new-event-form-div' >PLEASE CONFIRM THE EVENT DETAILS BELOW, AND ADD ITS DATE AND LOCATION.
+      <hr id='home-divider'/>
       <h3>{props.finalData.title.toUpperCase()}</h3>
       <p>{props.finalData.body}</p>
       <form>
