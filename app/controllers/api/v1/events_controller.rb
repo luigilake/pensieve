@@ -23,11 +23,40 @@ class Api::V1::EventsController < ApplicationController
     render json: @event
   end
 
+  def create
+    timeline_id = params[:timeline_id]
+    new_event = Event.new
+    new_event.title = event_params['title']
+    new_event.snippet = event_params['snippet']
+    new_event.body = event_params['body']
+    new_event.date = event_params['date'].to_date
+    new_event.location = event_params['location']
+    if new_event.save
+      EventTimeline.create(event: new_event, timeline_id: timeline_id)
+      @timeline = Timeline.find(timeline_id)
+      @events = @timeline.events.order('date DESC').map do |event|
+        {
+          id: event.id,
+          title: event.title,
+          snippet: event.snippet,
+          date: event.date.strftime('%^B %d %Y')
+        }
+      end
+      render json: @events
+    end
+  end
+
   def destroy
     event_id = params[:id]
     event_to_delete = Event.find(event_id)
     event_to_delete.delete
     render json: Event.all
+  end
+
+  private
+
+  def event_params
+    params.require(:memory).permit(:title, :snippet, :body, :date, :location)
   end
 
 end
