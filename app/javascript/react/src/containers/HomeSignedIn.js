@@ -11,9 +11,11 @@ class HomeSignedIn extends Component {
       timelinesFilter: 'timelines',
       userMemories: []
     }
-    this.changeFilterTimelines = this.changeFilterTimelines.bind(this)
-    this.changeFilterPersonals = this.changeFilterPersonals.bind(this)
-    this.changeFilterNew = this.changeFilterNew.bind(this)
+    this.changeFilterTimelines = this.changeFilterTimelines.bind(this);
+    this.changeFilterPersonals = this.changeFilterPersonals.bind(this);
+    this.changeFilterNew = this.changeFilterNew.bind(this);
+    this.deleteMemory = this.deleteMemory.bind(this);
+    this.editMemory = this.editMemory.bind(this);
   }
 
   componentDidMount(){
@@ -21,6 +23,34 @@ class HomeSignedIn extends Component {
       credentials: 'same-origin',
       method: 'GET',
       headers: { 'Content-Type':'application/json'}
+    })
+    .then(response => response.json())
+    .then(response => {
+      this.setState({ userMemories: response })
+    })
+  }
+
+  deleteMemory(memory_id){
+    fetch(`/api/v1/memories/${memory_id}`,{
+      credentials: 'same-origin',
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json'}
+    })
+    .then(response => {
+      let newArray = this.state.userMemories.filter( memory => {
+        return memory.id != memory_id
+      })
+      return( newArray )
+    })
+    .then(response => this.setState({ userMemories: response }))
+  }
+
+  editMemory(formPayload){
+    fetch(`/api/v1/memories/:id`, {
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
     })
     .then(response => response.json())
     .then(response => {
@@ -62,7 +92,7 @@ class HomeSignedIn extends Component {
       rendered = <TimelinesIndex timelines={this.props.timelines} />
     } else if (this.state.timelinesFilter == 'personals') {
       personalClass = 'selected-homepage-button'
-      rendered = <PersonalTimeline personals={this.state.userMemories} userName={name}/>
+      rendered = <PersonalTimeline personals={this.state.userMemories} userName={name} deleteMemory={this.deleteMemory} editMemory={this.editMemory}/>
     } else if (this.state.timelinesFilter == 'new') {
       newClass = 'selected-homepage-button'
       rendered = <TimelineFormContainer addNewTimeline={this.props.addNewTimeline} changeFilterTimelines={this.changeFilterTimelines} loading={this.props.loading}/>

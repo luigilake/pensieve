@@ -78,10 +78,31 @@ input.new-event-form-event-input {
   margin: 0% 1%;
   padding: 0.5%;
   outline-color: white;
+  text-align: center;
 }
 
 input.new-event-form-event-input:focus {
   opacity: 1;
   border: none;
   outline-color: white;
+}
+
+textarea.new-event-form-event-input {
+  font-family: futura;
+  font-size: 1rem;
+  opacity: 0.7;
+  margin: 0% 1%;
+  padding: 0.5%;
+  outline-color: white;
+  max-width: 30rem;
+}
+
+textarea.new-event-form-event-input:focus {
+  opacity: 1;
+  border: none;
+  outline-color: white;
+}
+
+div.final-new-event-form-div h3 {
+  margin-top: 2%;
 }
