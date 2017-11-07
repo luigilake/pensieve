@@ -38,6 +38,24 @@ class Api::V1::MemoriesController < ApplicationController
     end
   end
 
+  def update
+    memory_to_update = Memory.find(memory_params[:id])
+    if memory_params[:body] != ''
+      memory_to_update.update(body: memory_params[:body])
+      user = current_user
+      memories = user.memories.order('created_at DESC').map do |memory|
+        user_memory_structure(memory)
+      end
+      render json: memories
+    else
+      user = current_user
+      memories = user.memories.order('created_at DESC').map do |memory|
+        user_memory_structure(memory)
+      end
+      render json: memories
+    end
+  end
+
   def destroy
     memory_id = params[:id]
     memory_to_delete = Memory.find(memory_id)
@@ -51,7 +69,7 @@ class Api::V1::MemoriesController < ApplicationController
   private
 
   def memory_params
-    params.require(:memory).permit(:body, :event_id)
+    params.require(:memory).permit(:body, :event_id, :id)
   end
 
   def memory_structure(memory)
@@ -65,6 +83,15 @@ class Api::V1::MemoriesController < ApplicationController
         image_url: user.image_url
       }
     }
+  end
+
+  def user_memory_structure(memory)
+    return({
+      id: memory.id,
+      body: memory.body,
+      created_at: memory.created_at.strftime('%^B %d %Y'),
+      event_id: memory.event_id
+    })
   end
 
 end
