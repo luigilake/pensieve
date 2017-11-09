@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get "current_user" => "users#current"
 
-      resources :timelines do
+      resources :timelines, only: [:index, :show, :create, :destroy] do
         resources :events, only: [:index, :create]
       end
 
