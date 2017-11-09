@@ -59,7 +59,8 @@ class HomePage extends Component {
 
     return(
       <div>
-        <img id='main-logo' src='https://image.ibb.co/imeFqm/Pensive_project_logo_V4.png' alt='logo'/>
+        <img id='main-logo' src='https://s3.amazonaws.com/pensieve-project-development/uploads/timeline/image/61/Pensive_project_logoV4.png
+' alt='logo'/>
         <hr id='home-divider'/>
         {homeStatus}
       </div>
@@ -68,3 +69,5 @@ class HomePage extends Component {
 }
 
 export default HomePage;
+
+'https://image.ibb.co/imeFqm/Pensive_project_logo_V4.png'

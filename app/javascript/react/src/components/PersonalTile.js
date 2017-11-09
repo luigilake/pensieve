@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
+import swal from 'sweetalert';
 
 const PersonalTile = props => {
+  let deleteMemory = () => {
+    swal({
+      title: "Are you sure you want to delete this memory?",
+      icon: "warning",
+      buttons: ["Cancel", "Delete"],
+    })
+    .then(value => {
+      if(value){
+        props.onDelete();
+      }
+    })
+  }
 
   return(
     <div className='timeline-item personal-timeline-div'>
@@ -13,7 +26,7 @@ const PersonalTile = props => {
           <p className='timeline-content-date' >{props.memory.created_at}</p>
           <p>{props.memory.body}</p>
         </Link>
-        <button className='personal-timeline-button' onClick={props.onEdit} >EDIT</button><button onClick={props.onDelete} className='personal-timeline-button' >DELETE</button>
+        <button className='personal-timeline-button' onClick={props.onEdit} >EDIT</button><button onClick={deleteMemory} className='personal-timeline-button' >DELETE</button>
       </div>
     </div>
   )

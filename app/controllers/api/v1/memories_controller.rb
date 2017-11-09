@@ -86,12 +86,12 @@ class Api::V1::MemoriesController < ApplicationController
   end
 
   def user_memory_structure(memory)
-    return({
+    {
       id: memory.id,
       body: memory.body,
       created_at: memory.created_at.strftime('%^B %d %Y'),
       event_id: memory.event_id
-    })
+    }
   end
 
 end
