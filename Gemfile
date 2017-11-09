@@ -12,6 +12,8 @@ gem 'foundation-rails'
 gem 'jquery-rails'
 gem "carrierwave"
 gem 'fog'
+gem 'omniauth-google-oauth2'
+gem 'figaro'
 
 group :test do
   gem 'coveralls', require: false

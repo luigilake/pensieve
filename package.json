@@ -12,7 +12,7 @@
     "react-dom": "^16.0.0",
     "react-dropzone": "^4.2.1",
     "react-router": "^3.0.2",
-    "sweetalert2": "^6.11.2"
+    "sweetalert": "^2.0.8"
   },
   "devDependencies": {
     "enzyme": "^3.1.0",

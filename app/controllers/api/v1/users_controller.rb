@@ -21,6 +21,12 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     user_id = params[:id]
     user_to_delete = User.find(user_id)
+    user_to_delete.memories.map do |memory|
+      memory.delete
+    end
+    user_to_delete.identities.map do |identity|
+      identity.delete
+    end
     user_to_delete.delete
     render json: User.all
   end
