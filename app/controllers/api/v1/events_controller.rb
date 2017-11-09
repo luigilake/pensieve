@@ -20,7 +20,17 @@ class Api::V1::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    render json: @event
+
+    event = {
+     id: @event.id,
+     title: @event.title,
+     snippet: @event.snippet,
+     body: @event.body,
+     date: @event.date.strftime('%^B %d %Y'),
+     location: @event.location
+    }
+
+    render json: event
   end
 
   def create
@@ -34,27 +44,13 @@ class Api::V1::EventsController < ApplicationController
     if new_event.save
       EventTimeline.create(event: new_event, timeline_id: timeline_id)
       @timeline = Timeline.find(timeline_id)
-      @events = @timeline.events.order('date DESC').map do |event|
-        {
-          id: event.id,
-          title: event.title,
-          snippet: event.snippet,
-          date: event.date.strftime('%^B %d %Y')
-        }
-      end
+      @events = event_snippet(@timeline)
       render json: @events
     else
       existing_event = Event.find_by(title: new_event.title)
       EventTimeline.create(event: existing_event, timeline_id: timeline_id)
       @timeline = Timeline.find(timeline_id)
-      @events = @timeline.events.order('date DESC').map do |event|
-        {
-          id: event.id,
-          title: event.title,
-          snippet: event.snippet,
-          date: event.date.strftime('%^B %d %Y')
-        }
-      end
+      @events = event_snippet(@timeline)
       render json: @events
     end
   end
@@ -62,12 +58,18 @@ class Api::V1::EventsController < ApplicationController
   def destroy
     event_id = params[:id]
     event_to_delete = Event.find(event_id)
-    event_to_delete.delete
+
+    event_to_delete.memories.each do |memory|
+      memory.delete
+    end
 
     event_timelines_to_delete = EventTimeline.where(event_id: event_id)
     event_timelines_to_delete.map do |et|
       et.delete
     end
+
+    event_to_delete.delete
+
     render json: Event.all
   end
 
@@ -76,5 +78,16 @@ class Api::V1::EventsController < ApplicationController
   def event_params
     params.require(:memory).permit(:title, :snippet, :body, :date, :location)
   end
+
+  def event_snippet(timeline)
+       timeline.events.order('date DESC').map do |event|
+         {
+           id: event.id,
+           title: event.title,
+           snippet: event.snippet,
+           date: event.date.strftime('%^B %d %Y')
+         }
+       end
+   end
 
 end
