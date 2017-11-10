@@ -18,4 +18,9 @@ RSpec.describe User, type: :model do
     it { should have_valid(:image_url).when(nil) }
   end
 
+  context 'may optionally be an admin' do
+    it { should have_valid(:admin).when(true) }
+    it { should have_valid(:admin).when(false) }
+  end
+
 end

@@ -23,10 +23,7 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
     it 'should return a json with an array of timeline objects, each with a title and an image url' do
       returned_json = JSON.parse(response.body)
       expect(returned_json[0]['title']).to eq 'History of Gondor'
-      expect(returned_json[0]['image']).to eq 'exampleimage.url'
-
       expect(returned_json[1]['title']).to eq 'History of Rohan'
-      expect(returned_json[1]['image']).to eq 'exampleimage.url'
     end
   end
 
@@ -43,8 +40,6 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
     it 'should return a json of a timeline object' do
       returned_json = JSON.parse(response.body)
       expect(returned_json['title']).to eq 'History of Gondor'
-      expect(returned_json['image']).to eq 'exampleimage.url'
     end
   end
-  
 end

@@ -54,7 +54,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
       expect(returned_json['title']).to eq 'Seige of Minas Tirith'
       expect(returned_json['snippet']).to eq 'example snippet1'
       expect(returned_json['body']).to eq 'example body1'
-      expect(returned_json['date']).to eq '2001-02-03'
+      expect(returned_json['date']).to eq 'FEBRUARY 03 2001'
     end
   end
 
