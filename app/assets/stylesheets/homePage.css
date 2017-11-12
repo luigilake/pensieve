@@ -78,3 +78,9 @@ h3.timeline-tile-title {
     font-size: 1rem;
   }
 }
+
+h3.sign-out-info {
+  font-family: futura;
+  text-align: center;
+  margin: 2% 10% 0% 10%;
+}

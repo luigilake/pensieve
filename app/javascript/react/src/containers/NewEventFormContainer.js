@@ -16,8 +16,11 @@ class NewEventFormContainer extends Component {
       submittedOption: {},
       finalStep: false,
       finalConfirmation: {},
+      foundEventDates: [],
+      formDate: '',
       selectedDate: '',
-      location: ''
+      location: '',
+      error: ''
     }
     this.onChangeSearch = this.onChangeSearch.bind(this);
     this.accessWikipedia = this.accessWikipedia.bind(this);
@@ -28,6 +31,8 @@ class NewEventFormContainer extends Component {
     this.onDateSelect = this.onDateSelect.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.finalSubmit = this.finalSubmit.bind(this);
+    this.dateParser = this.dateParser.bind(this);
+    this.handleDateSelect = this.handleDateSelect.bind(this);
   }
 
   accessWikipedia(searchTerm){
@@ -87,8 +92,34 @@ class NewEventFormContainer extends Component {
         snippet: this.state.submittedOption.snippet,
         body: responsePath.extract
       }
-      this.setState({ finalConfirmation: finalObject })
+      let eventDates = this.dateParser(responsePath.extract)
+      this.setState({ finalConfirmation: finalObject, foundEventDates: eventDates })
     })
+  }
+
+  dateParser(extract){
+    let foundDates = extract.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\ ((\d{2}|\d{1})|((\d{2}|\d{1})(\-|\–)(\d{2}|\d{1})))\,\ \d{4}/g);
+    let allDates = [];
+    if(foundDates){
+      let filteredDates = foundDates.filter( (date, index) => {
+        return(foundDates.indexOf(date) == index);
+      })
+      filteredDates.forEach( date => {
+        if(date.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\ ((\d{2}|\d{1})(\-|\–)(\d{2}|\d{1}))\,\ \d{4}/g)){
+          let month = date.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)/g)[0];
+          let firstDay = date.match(/(\ (.*?)(\-|\–))/g)[0].slice(1,-1);
+          let lastDay = date.match(/((\-|\–)(.*?)\,)/g)[0].slice(1,-1);
+          let year = date.match(/\d{4}/g)[0];
+          let firstDate = `${month} ${firstDay}, ${year}`
+          let lastDate = `${month} ${lastDay}, ${year}`
+          allDates.push(firstDate);
+          allDates.push(lastDate);
+        } else {
+          allDates.push(date);
+        }
+      })
+    }
+    return(allDates)
   }
 
   submitSearch(event){
@@ -118,23 +149,54 @@ class NewEventFormContainer extends Component {
     this.setState({ location: event.target.value })
   }
 
+  handleDateSelect(event){
+    this.setState({ formDate: event.target.value })
+  }
+
   finalSubmit(event){
     event.preventDefault();
-    let formPayload = {
-      title: this.state.finalConfirmation.title,
-      snippet: this.state.finalConfirmation.snippet,
-      body: this.state.finalConfirmation.body,
-      date: this.state.selectedDate,
-      location: this.state.location
+    let formPayload;
+    if(this.state.formDate == '' || this.state.formDate == 'none' && this.state.selectedDate == '' || this.state.location == ''){
+      this.setState({ error: 'PLEASE FILL OUT BOTH THE DATE AND LOCATION FIELD.' })
+    } else {
+      let date;
+      if(this.state.formDate == 'none'){
+        date = this.state.selectedDate
+      } else {
+        date = new Date(this.state.formDate);
+      }
+      let location = 'N/A'
+      if(this.state.location.length > 0){
+        location = this.state.location;
+      }
+      formPayload = {
+        title: this.state.finalConfirmation.title,
+        snippet: this.state.finalConfirmation.snippet,
+        body: this.state.finalConfirmation.body,
+        date: date,
+        location: location
+      }
+      this.props.createEvent(formPayload)
+      this.setState({ finalStep: false, searchValue: '', location: '', error: '' })
     }
-    this.props.createEvent(formPayload)
-    this.setState({ finalStep: false, searchValue: '' })
   }
 
   render(){
     let eventForm;
     let searchOptions;
     let finalStep;
+    let eventDates;
+    let error;
+
+    if(this.state.error != ''){
+      error = <p className='event-entry-error'>{this.state.error}</p>
+    }
+
+    if(this.state.foundEventDates.length > 0){
+      eventDates = this.state.foundEventDates;
+    } else {
+      eventDates = [];
+    }
 
     if(this.state.searchObjects.length > 0){
       searchOptions = this.state.searchObjects
@@ -146,7 +208,11 @@ class NewEventFormContainer extends Component {
     }
 
     if(this.state.finalStep && this.state.finalConfirmation.title && this.props.selected){
-      finalStep = <EventFormConfirmation finalData={this.state.finalConfirmation} onDateSelect={this.onDateSelect} handleLocationChange={this.handleLocationChange} locationValue={this.state.location} finalSubmit={this.finalSubmit}/>
+      finalStep = <EventFormConfirmation finalData={this.state.finalConfirmation} onDateSelect={this.onDateSelect} handleLocationChange={this.handleLocationChange} locationValue={this.state.location} finalSubmit={this.finalSubmit} eventDates={eventDates}
+      formDate={this.state.formDate}
+      handleDateSelect={this.handleDateSelect}
+      error={error}
+      />
     }
 
     return(
