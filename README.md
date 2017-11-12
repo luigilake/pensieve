@@ -28,7 +28,9 @@ Based on the 'Pensive' from the Harry Potter Series, this is a collection and co
 
  * Backend: Rails 5.1.2
  * Frontend: React.js and Embedded Ruby
- * User Auth: Github Omniauth
+ * External API: Wikipedia
+ * User Auth: Github and Google Omniauth
+ * Drag and drop: react-dropzone
  * Image Hosting: Amazon Web Services
  * Styling: Foundation
  * Database: Postgres
