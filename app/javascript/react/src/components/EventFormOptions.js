@@ -19,10 +19,10 @@ const EventFormOptions = props => {
   }
 
   return(
-      <label className='new-event-form-search-label' >{instruction}
-        {searchOptions}
-        <input className='new-event-form-option-submit' name='searchValueGroup' type='submit' value='SUBMIT' onClick={props.submitSearchOption}/>
-      </label>
+    <label className='new-event-form-search-label' >{instruction}
+      {searchOptions}
+      <input className='new-event-form-option-submit' name='searchValueGroup' type='submit' value='SUBMIT' onClick={props.submitSearchOption}/>
+    </label>
   )
 }
 

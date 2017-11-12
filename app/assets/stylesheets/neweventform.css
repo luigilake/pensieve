@@ -106,3 +106,9 @@ textarea.new-event-form-event-input:focus {
 div.final-new-event-form-div h3 {
   margin-top: 2%;
 }
+
+p.event-entry-error {
+  padding: 2%;
+  border: 1px solid red;
+  background: rgba(252, 23, 23, 0.3)
+}

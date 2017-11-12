@@ -164,3 +164,12 @@ div.timeline-content p {
     padding-right: 20%;
   }
 }
+
+p.timeline-info-snippet {
+  font-family: futura;
+  margin: 0% 10%;
+}
+
+div.timeline-height-extend {
+  min-height: 20rem;
+}

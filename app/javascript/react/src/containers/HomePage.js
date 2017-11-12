@@ -50,10 +50,12 @@ class HomePage extends Component {
 
   render(){
 
+    let signedOutInfo;
     let homeStatus;
     if(this.state.current_user){
       homeStatus = <HomeSignedIn timelines={this.state.timelines} user={this.state.current_user} addNewTimeline={this.addNewTimeline} loading={this.state.loading}/>
     } else {
+      signedOutInfo = <h3 className={'sign-out-info'}>PLEASE SIGN IN TO ACCESS MORE FEATURES OF THE PENSIEVE PROJECT.</h3>
       homeStatus = <TimelinesIndex timelines={this.state.timelines} />
     }
 
@@ -62,6 +64,7 @@ class HomePage extends Component {
         <img id='main-logo' src='https://s3.amazonaws.com/pensieve-project-development/uploads/timeline/image/61/Pensive_project_logoV4.png
 ' alt='logo'/>
         <hr id='home-divider'/>
+        {signedOutInfo}
         {homeStatus}
       </div>
     )

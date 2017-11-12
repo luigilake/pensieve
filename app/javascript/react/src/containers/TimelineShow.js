@@ -94,8 +94,10 @@ class TimelineShow extends Component {
 
     let selectedEvents;
     let selectedNewEvent;
+    let infoSnippet;
     if(this.state.selectedTab == 'events'){
       selectedEvents = true;
+      infoSnippet = <p className='timeline-info-snippet' >WELCOME TO THE TIMELINE OF {title}! HERE, YOU CAN VIEW MORE INFORMATION BY CLICKING ON EACH EVENT TITLE OR YOU CAN CREATE NEW EVENTS PULLED DIRECTLY FROM WIKIPEDIA!</p>
     } else if (this.state.selectedTab == 'new'){
       selectedNewEvent = true;
     }
@@ -110,8 +112,11 @@ class TimelineShow extends Component {
         </div>
         {buttons}
         <hr id='show-divider'/>
-        <Timeline id={this.state.id} selected={selectedEvents} events={events}/>
-        <NewEventFormContainer selected={selectedNewEvent} createEvent={this.createEvent}/>
+        {infoSnippet}
+        <div className='timeline-height-extend'>
+          <Timeline id={this.state.id} selected={selectedEvents} events={events}/>
+          <NewEventFormContainer selected={selectedNewEvent} createEvent={this.createEvent}/>
+        </div>
       </div>
     )
   }
