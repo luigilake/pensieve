@@ -27,7 +27,7 @@ class MemoryForm extends Component {
   handleSubmit(event){
     event.preventDefault();
     if(this.state.memoryBody == ''){
-      this.setState({ error: 'Please enter your memory into the form below.'})
+      this.setState({ error: 'PLEASE ENTER YOUR MEMORY INTO THE FORM BELOW'})
     } else {
       let formPayload = {
         body: this.state.memoryBody,
@@ -43,7 +43,7 @@ class MemoryForm extends Component {
 
     let error;
     if(this.state.error != ''){
-      error = <li>{this.state.error}</li>
+      error = <p className='event-entry-error' >{this.state.error}</p>
     }
     return(
       <div className='entire-memory-form'>

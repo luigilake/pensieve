@@ -47,10 +47,10 @@ class TimelineFormContainer extends Component {
     if(this.state.timelineTitle == '' || this.state.timelineImage.length == 0){
       let errors_array = []
       if(this.state.timelineTitle == ''){
-        errors_array.push('Please fill out a Timeline Title')
+        errors_array.push('PLEASE FILL A TIMELINES TITLE')
       }
       if(this.state.timelineImage.length == 0){
-        errors_array.push('Please upload an image for the Timeline')
+        errors_array.push('PLEASE UPLOAD AN IMAGE FOR THE TIMELINE')
       }
       this.setState({ errors: errors_array })
     } else {
@@ -70,7 +70,7 @@ class TimelineFormContainer extends Component {
     if(this.state.errors.length > 0){
       errors = this.state.errors.map( (error, index) => {
         return(
-          <p id='personal-timeline-intro' key={index} >{error}</p>
+          <p className='event-entry-error' key={index} >{error}</p>
         )
       })
     }
