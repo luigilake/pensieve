@@ -26,6 +26,22 @@ describe('EventTile', () => {
     )
   });
 
+  it('should have four div tags', () => {
+    expect(wrapper.find('div').length).toBe(4)
+  });
+
+  it('should have two h3 tags', () => {
+    expect(wrapper.find('h3').length).toBe(2)
+  });
+
+  it('should have one a tags', () => {
+    expect(wrapper.find('a').length).toBe(1)
+  });
+
+  it('should have one p tags', () => {
+    expect(wrapper.find('p').length).toBe(1)
+  });
+
   it('should have an h3 tag with the date', () => {
     expect(wrapper.find('h3.timeline-content-date').text()).toBe('FEBRUARY 27 2001')
   });
