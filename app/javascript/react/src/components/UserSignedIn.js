@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import swal from 'sweetalert';
+import hello from '../POJOs/hello'
+
 
 const UserSignedIn = props => {
   let signOut = () => {
@@ -18,7 +20,7 @@ const UserSignedIn = props => {
     <div className='grid-container'>
       <div className='grid-x navbar'>
         <Link to='/'><button className='small-12 medium-2 large-2 cell'>HOME</button></Link>
-        <Link><button className='small-12 medium-2 large-2 large-offset-6 cell'>HI, {props.firstname.toUpperCase()}</button></Link>
+        <button onClick={hello} className='small-12 medium-2 large-2 large-offset-6 cell'>HI, {props.firstname.toUpperCase()}</button>
         <button onClick={signOut} className='small-12 medium-2 large-2 cell'>SIGN OUT</button>
       </div>
     </div>
