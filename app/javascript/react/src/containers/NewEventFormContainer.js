@@ -5,8 +5,7 @@ import EventFormSearch from '../components/EventFormSearch'
 import fetchJsonp from 'fetch-jsonp'
 import EventFormOptions from '../components/EventFormOptions'
 import EventFormConfirmation from '../components/EventFormConfirmation'
-import dateParser from '../POJOs/dateParser'
-import wikiSearch from '../POJOs/WikipediaAccess'
+import { wikiSearch, wikiFinal } from '../POJOs/WikipediaAccess'
 
 class NewEventFormContainer extends Component {
   constructor(props){
@@ -46,42 +45,17 @@ class NewEventFormContainer extends Component {
     wikiSearch(searchValue, this.accessWikipedia);
   }
 
-  finalWikipedia(finalObject){
-    let searchTerm = finalObject.title.replace(/ /g, '_');
-    let searchURL = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
-    let completeURL = searchURL + encodeURIComponent(searchTerm)
-    fetchJsonp(completeURL)
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(response => {
-      let responsePath = response.query.pages
-      let pageKey = Object.keys(response.query.pages)[0]
-      responsePath = response.query.pages[pageKey]
-      let finalObject = {
-        title: responsePath.title,
-        snippet: this.state.submittedOption.snippet,
-        body: responsePath.extract
-      }
-      let eventDates = dateParser(responsePath.extract)
-      this.setState({ finalConfirmation: finalObject, foundEventDates: eventDates })
-    })
-  }
-
   onChangeSearch(event){
     this.setState({ searchValue: event.target.value, finalStep: false });
   }
 
+  finalWikipedia(finalObject, eventDates){
+    this.setState({ finalConfirmation: finalObject, foundEventDates: eventDates })
+  }
+
   submitSearchOption(event){
     event.preventDefault();
-    this.finalWikipedia(this.state.searchObjects[this.state.selectedOption]);
+    wikiFinal(this.state.searchObjects[this.state.selectedOption], this.state.submittedOption.snippet, this.finalWikipedia)
     this.setState({ submittedOption: this.state.searchObjects[this.state.selectedOption], searchObjects: [], finalStep: true })
   }
 
