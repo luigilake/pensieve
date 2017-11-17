@@ -1,20 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
-import swal from 'sweetalert';
-import hello from '../POJOs/hello'
+import { hello, signOut } from '../POJOs/NavBarFunctions'
 
 
 const UserSignedIn = props => {
-  let signOut = () => {
-    swal("Are you sure you want to sign out?", {
-      buttons: ["Cancel", "Sign Out"],
-    }).
-    then(value => {
-      if(value){
-        window.location.replace("/signout")
-      }
-    })
-  }
 
   return(
     <div className='grid-container'>
