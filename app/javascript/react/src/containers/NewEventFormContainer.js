@@ -55,7 +55,7 @@ class NewEventFormContainer extends Component {
 
   submitSearchOption(event){
     event.preventDefault();
-    wikiFinal(this.state.searchObjects[this.state.selectedOption], this.state.submittedOption.snippet, this.finalWikipedia)
+    wikiFinal(this.state.searchObjects[this.state.selectedOption], this.state.searchObjects[this.state.selectedOption].snippet, this.finalWikipedia)
     this.setState({ submittedOption: this.state.searchObjects[this.state.selectedOption], searchObjects: [], finalStep: true })
   }
 
@@ -78,11 +78,11 @@ class NewEventFormContainer extends Component {
   finalSubmit(event){
     event.preventDefault();
     let formPayload;
-    if(this.state.formDate == '' || this.state.formDate == 'none' && this.state.selectedDate == '' || this.state.location == ''){
+    if(this.state.formDate == '' && this.state.selectedDate == '' || this.state.formDate == 'none' && this.state.selectedDate == '' || this.state.location == ''){
       this.setState({ error: 'PLEASE FILL OUT BOTH THE DATE AND LOCATION FIELD.' })
     } else {
       let date;
-      if(this.state.formDate == 'none'){
+      if(this.state.formDate == 'none' || this.state.formDate == ''){
         date = this.state.selectedDate
       } else {
         date = new Date(this.state.formDate);
@@ -99,7 +99,7 @@ class NewEventFormContainer extends Component {
         location: location
       }
       this.props.createEvent(formPayload)
-      this.setState({ finalStep: false, searchValue: '', location: '', error: '' })
+      this.setState({ finalStep: false, searchValue: '', location: '', error: '', formDate: '', selectedDate: '' })
     }
   }
 
