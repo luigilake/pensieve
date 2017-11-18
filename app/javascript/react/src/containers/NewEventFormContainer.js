@@ -55,7 +55,7 @@ class NewEventFormContainer extends Component {
 
   submitSearchOption(event){
     event.preventDefault();
-    wikiFinal(this.state.searchObjects[this.state.selectedOption], this.state.submittedOption.snippet, this.finalWikipedia)
+    wikiFinal(this.state.searchObjects[this.state.selectedOption], this.state.searchObjects[this.state.selectedOption].snippet, this.finalWikipedia)
     this.setState({ submittedOption: this.state.searchObjects[this.state.selectedOption], searchObjects: [], finalStep: true })
   }
 
