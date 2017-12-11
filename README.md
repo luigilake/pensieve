@@ -7,6 +7,9 @@ Based on the 'Pensive' from the Harry Potter Series, this is a collection and co
 
 [ ![Codeship](https://app.codeship.com/projects/b400a6c0-9f33-0135-4931-46fd1a276e75/status?branch=master)](https://app.codeship.com/projects/253582)
 [![Coveralls](https://coveralls.io/repos/github/luigilake/pensieve/badge.svg?branch=master)](https://coveralls.io/github/luigilake/pensieve?branch=master)
+
+![alt text](https://github.com/luigilake/pensieve/blob/master/public/pensieve-preview.jpg)
+
 ---
 
 ## Features
